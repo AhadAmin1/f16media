@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── PERFORMANCE BASE ── */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #050505;
+  color: #f0f4ff;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+/* 🔥 REAL SECRET OF TESLA-LIKE SMOOTHNESS: GPU LAYER */
+.gpu-layer {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.hero-will-change {
+  will-change: transform, opacity;
+}
+
+.floating-will-change {
+  will-change: transform;
+}
+
+.button-will-change {
+  will-change: transform;
+}
+
+/* Better scrolling performance */
+.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ── ROOT ── */
+:root {
+  --cyan: #00f0ff;
+  --purple: #8b5cf6;
+  --orange: #ff5a00;
+}
+
+.font-display {
+  font-family: "Bebas Neue", cursive;
+  text-transform: uppercase;
+}
+
+.font-mono {
+  font-family: "Rajdhani", monospace;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes slow-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(1%, 2%, 0) scale(1.05); }
+}
+
+.animate-slow-float {
+  animation: slow-float 15s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── HUD GRID ── */
+.hud-grid {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+}
+
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 240, 255, 0.05); /* Reduced opacity */
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(11000%); }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff, #8b5cf6);
+  border-radius: 10px;
+}
+
+/* ── GRADIENT TEXT ── */
+.gradient-cyan-purple {
+  background: linear-gradient(135deg, #00f0ff, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-all {
+  background: linear-gradient(90deg, #00f0ff, #8b5cf6, #ff5a00);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── OPTIMIZED GLOW EFFECTS (Reduced Shadow Spread) ── */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+.glow-purple {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}
+.glow-orange {
+  box-shadow: 0 0 15px rgba(255, 90, 0, 0.15);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+/* ── OPTIMIZED GLASS (Reduced blurs for performance) ── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-luxury {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ── GRID BG ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── CURSOR ── */
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, transparent 70%);
+  filter: blur(15px);
+  mix-blend-mode: screen;
+}
+
+/* ── MAGNETIC HOVER ── */
+.magnetic-hover {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── DEPTH CARDS ── */
+.depth-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── CINEMATIC SECTIONS ── */
+.cinematic-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Smooth scrolling override for Lenis */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
